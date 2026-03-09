@@ -43,14 +43,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline
 app.UseApiExceptionHandler(app.Environment);
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/1.0.1/swagger.json", "OpenAPI Petstore 1.0.1");
-    });
-}
+    c.SwaggerEndpoint("/swagger/1.0.1/swagger.json", "OpenAPI Petstore 1.0.1");
+});
 
 app.UseHttpsRedirection();
 app.UseRouting();
